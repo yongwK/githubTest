@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class calculatorTest extends JFrame implements ActionListener {
+	JLabel lb = new JLabel("0.0");
 	JTextArea ta = new JTextArea();
 	JTextField tf = new JTextField();
 	JPanel pnl1= new JPanel();
@@ -29,7 +31,7 @@ public class calculatorTest extends JFrame implements ActionListener {
 		super();
 		add(pnl1, BorderLayout.NORTH);
 		pnl1.setLayout(new GridLayout(0,1));
-		pnl1.add(tf);
+		pnl1.add(lb);
 		
 		pnl1.add(pnl2);
 		pnl2.setLayout(new GridLayout(0,3));

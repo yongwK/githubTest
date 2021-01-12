@@ -10,6 +10,7 @@
 /ObjectCompareTest$compareAscNum.class
 /ObjectCompareTest$compareDecName.class
 /ObjectCompareTest$compareDecNum.class
+<<<<<<< HEAD
 /ObjectCompareTest.class
 /PropertiesTest.class
 /TreeMapTest.class
@@ -22,3 +23,7 @@
 /JComboBoxTest.class
 /calTest.class
 /calculatorTest.class
+=======
+/ObjectCompareTest$compareAscNum.class
+/Classsss.class
+>>>>>>> refs/remotes/origin/Test1
