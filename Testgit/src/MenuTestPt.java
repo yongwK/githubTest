@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.DefaultComboBoxModel;
@@ -69,6 +70,9 @@ public class MenuTestPt extends JFrame implements ActionListener {
 	
 	//saveText
 	String saveTxt = "";
+	
+	//실행중인파일
+	File nowFile;
 	public MenuTestPt() {
 		
 		super("메모장");
@@ -158,7 +162,9 @@ public class MenuTestPt extends JFrame implements ActionListener {
 		Object eventObj = ae.getSource();
 		
 		if(eventObj instanceof JMenuItem) {
-			if(eventObj == openMenuItem) {
+			if( eventObj == newMenuItem) {
+				newFile();
+			}else if(eventObj == openMenuItem) {
 				fileOpen();
 			}
 			else if(eventObj == endMenuItem) {
@@ -178,6 +184,8 @@ public class MenuTestPt extends JFrame implements ActionListener {
 			}
 			else if(eventObj == memoMenuItem) {
 				startRuntime("notepad.exe");
+			}else if(eventObj == saveMenuItem) {
+				fileSave();
 			}
 		}
 		else if(eventObj instanceof JButton) {
@@ -199,6 +207,12 @@ public class MenuTestPt extends JFrame implements ActionListener {
 			else if(eventObj == openBtn) {
 				fileOpen();
 			}
+			else if(eventObj == newBtn) {
+				newFile();
+			}else if(eventObj == saveBtn) {
+				fileSave();
+			}
+		
 		}
 		else if(eventObj instanceof JComboBox) {
 			if(eventObj == fontSize || eventObj == fontName) {
@@ -207,6 +221,38 @@ public class MenuTestPt extends JFrame implements ActionListener {
 			}
 		}
 	}
+	
+	
+	//새파일
+	public void newFile() {
+		nowFile = null;
+		ta.setText("");
+		setTitle("메모장");
+	}
+	
+	//파일저장
+	public void fileSave() {
+		if(nowFile==null) {
+			JFileChooser fc = new JFileChooser();
+			int state = fc.showSaveDialog(this);
+			if(state == 0) {
+				File f = fc.getSelectedFile();
+				
+			}
+			
+			
+			
+		}else {
+			String writeTxt = ta.getText();
+			try {
+				FileWriter fw = new FileWriter(nowFile);
+				fw.write(writeTxt,0,writeTxt.length());
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	
 	//단축키 설정
 	public void setShortCut() {
