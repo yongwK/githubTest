@@ -13,3 +13,6 @@
 /empMain.class
 /Calculator.class
 /CalendarGuiTest.class
+/ObjectOutputStreamTest.class
+/ObjectInputStreamTest.class
+/RandomAccessFileTest.class
