@@ -93,7 +93,7 @@ public class CalendarGuiTest extends JFrame implements ActionListener{
 			JLabel emptyRoom = new JLabel("", JLabel.CENTER);
 			centerPane.add(emptyRoom);
 		}
-		for(int i = 0; i<=lblNum.length-1; i++) {
+		for(int i = 0; i<=lastDay-1; i++) {
 			JLabel calNum = new JLabel(lblNum[i], JLabel.CENTER);
 			centerPane.add(calNum);
 			if((space + i) % 7 == 0) {
@@ -132,9 +132,9 @@ public class CalendarGuiTest extends JFrame implements ActionListener{
 		
 		else if(eventObj instanceof JComboBox) {
 			if(eventObj == selYear) {
-				changeYear();
+				changeYearMonth();
 			}else if(eventObj == selMonth) {
-				changeMonth();
+				changeYearMonth();
 			}
 		}
 	}
@@ -145,26 +145,30 @@ public class CalendarGuiTest extends JFrame implements ActionListener{
 			
 	}
 	
-	public void changeYear() {
+	public void changeYearMonth() {
 		//centerPane을 초기화시키고 다시 넣으면 될것같은데..
-		int year = (int)selYear.getSelectedItem();
-		now.set(year, month, 1);
-		lastDay = now.getActualMaximum(Calendar.DAY_OF_MONTH);
-		space = now.get(Calendar.DAY_OF_WEEK);
+		centerPane.setVisible(false);
+		centerPane.removeAll();
+		Calendar reNow = Calendar.getInstance();
+		reNow.set((int)selYear.getSelectedItem(), (int)selMonth.getSelectedItem()-1, 1);
+		lastDay = reNow.getActualMaximum(Calendar.DAY_OF_MONTH);
+		space = reNow.get(Calendar.DAY_OF_WEEK);
 		for(int empty = 1; empty <space; empty++) {
-			JLabel emptyRoom = new JLabel("", JLabel.CENTER);
-			centerPane.add(emptyRoom);
+			JLabel newEmptyRoom = new JLabel("", JLabel.CENTER);
+			centerPane.add(newEmptyRoom);
 		}
-		for(int i = 0; i<=lblNum.length-1; i++) {
-			JLabel calNum = new JLabel(lblNum[i], JLabel.CENTER);
-			centerPane.add(calNum);
+		for(int i = 0; i<=lastDay-1; i++) {
+			JLabel newCalNum = new JLabel(lblNum[i], JLabel.CENTER);
+			centerPane.add(newCalNum);
 			if((space + i) % 7 == 0) {
-				calNum.setForeground(Color.blue);
+				newCalNum.setForeground(Color.blue);
 			}else if( (space+i) % 7 == 1){
-				calNum.setForeground(Color.red);
+				newCalNum.setForeground(Color.red);
 			}
 		}
 		
+		bigPane.add(centerPane,BorderLayout.CENTER);
+		centerPane.setVisible(true);
 	}
 	public void changeMonth() {
 		
