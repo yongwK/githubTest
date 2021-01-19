@@ -146,7 +146,6 @@ public class CalendarGuiTest extends JFrame implements ActionListener{
 	}
 	
 	public void changeYearMonth() {
-		//centerPane을 초기화시키고 다시 넣으면 될것같은데..
 		centerPane.setVisible(false);
 		centerPane.removeAll();
 		Calendar reNow = Calendar.getInstance();
